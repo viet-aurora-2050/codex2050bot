@@ -1,0 +1,31 @@
+services:
+  - type: worker
+    name: codex2050-bot
+    env: python
+    plan: free
+    buildCommand: |
+      pip install --upgrade pip
+      pip install -r requirements.txt
+    startCommand: python main.py
+    autoDeploy: true
+    envVars:
+      - key: TELEGRAM_TOKEN
+        sync: false
+        required: true
+      - key: DEEPSEEK_API_KEY
+        required: false
+      - key: ENABLE_RPC
+        value: "true"
+      - key: ENABLE_WEB
+        value: "true"
+  - type: web
+    name: codex2050-dashboard
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn web.dashboard:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: WEB_HOST
+        value: 0.0.0.0
+      - key: WEB_PORT
+        value: 8080
