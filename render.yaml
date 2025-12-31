@@ -19,4 +19,16 @@ services:
         value: "true"
       - key: ENABLE_WEB
         value: "false"
-        value: "false"
+
+  - type: web
+    name: codex2050-dashboard
+    env: python
+    plan: free
+    buildCommand: |
+      pip install --upgrade pip
+      pip install -r requirements.txt
+    startCommand: uvicorn web.dashboard:app --host 0.0.0.0 --port $PORT
+    autoDeploy: true
+    envVars:
+      - key: PORT
+        value: "10000"
