@@ -32,7 +32,9 @@ class Config:
         self.DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY", self.DEEPSEEK_API_KEY)
         self.ENABLE_RPC = os.getenv("ENABLE_RPC", str(self.ENABLE_RPC)).lower() == "true"
         self.ENABLE_WEB = os.getenv("ENABLE_WEB", str(self.ENABLE_WEB)).lower() == "true"
-        
+        if os.getenv("PORT"):
+            self.WEB_PORT = int(os.getenv("PORT"))
+
         allowed = os.getenv("ALLOWED_USER_IDS", "")
         self.ALLOWED_USER_IDS = [int(x) for x in allowed.split(",") if x.strip().isdigit()]
         
