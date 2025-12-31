@@ -37,3 +37,8 @@ So stellst du den Bot und das Dashboard in einem sauberen GitHub→Render-Flow w
 4. **Secrets kontrollieren**: `TELEGRAM_TOKEN` und `DEEPSEEK_API_KEY` nur im Render-Dashboard hinterlegen und bei Bedarf rotieren. Für das Dashboard ist keine eigene `PORT`-Variable mehr nötig, Render injiziert sie automatisch.
 
 Damit erhältst du einen Neustart ohne alte Cache-Artefakte und einen getrennten Webservice, der das Dashboard wieder erreichbar macht und auf dem von Render zugewiesenen Port lauscht.
+   - Dashboard-Start: `uvicorn web.dashboard:app --host 0.0.0.0 --port $PORT` (im Render-Webservice definiert).
+3. **Build-Cache leeren** (falls vorherige Deploys fehlschlugen): Render → *Advanced* → *Clear build cache* → *Manual Deploy → Deploy latest commit*.
+4. **Secrets kontrollieren**: `TELEGRAM_TOKEN` und `DEEPSEEK_API_KEY` nur im Render-Dashboard hinterlegen und bei Bedarf rotieren. Für das Dashboard reicht `PORT`, das in `render.yaml` gesetzt ist.
+
+Damit erhältst du einen Neustart ohne alte Cache-Artefakte und einen getrennten Webservice, der das Dashboard wieder erreichbar macht.
