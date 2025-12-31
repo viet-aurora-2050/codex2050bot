@@ -1,6 +1,6 @@
 # Codex2050
 
-Telegram bot powered by DeepSeek AI with optional web dashboard and RPC endpoints.
+Telegram bot powered by DeepSeek AI
 
 ## Setup
 1. Create a virtual environment and install dependencies:
@@ -17,8 +17,13 @@ Telegram bot powered by DeepSeek AI with optional web dashboard and RPC endpoint
    python main.py
    ```
 
+Optional: If you want to enable the optional web dashboard, set `ENABLE_WEB=true` in your `.env` **and** install the web extras:
+```bash
+pip install fastapi uvicorn
+```
+
 ## Deployment
-Render configuration (`render.yaml`) references secret environment variables. Keep your TELEGRAM_TOKEN and DEEPSEEK_API_KEY in Render's dashboard; they are not stored in the repository.
+Render configuration (`render.yaml`) references secret environment variables. Keep your TELEGRAM_TOKEN and DEEPSEEK_API_KEY in Render's dashboard; they are not stored in the repository. The dashboard service is disabled by default to avoid FastAPI/uvicorn dependencies; enable it only if you deploy your own web UI.
 
 ### Render secrets
 - Secrets such as `TELEGRAM_TOKEN` and `DEEPSEEK_API_KEY` stay in Render's Environment Variables page (already set up in the dashboard screenshot) and are **not** checked into git.
