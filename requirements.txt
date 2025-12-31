@@ -3,9 +3,8 @@ python-telegram-bot[job-queue]==21.7
 aiohttp==3.9.3
 httpx==0.27.0
 
-# Webhook braucht KEIN FastAPI / uvicorn bei PTB
-# fastapi==0.108.0   ❌ raus
-# uvicorn[standard]==0.25.0 ❌ raus
+fastapi==0.108.0
+uvicorn[standard]==0.25.0
 
 jinja2==3.1.3
 
