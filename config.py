@@ -17,7 +17,7 @@ class Config:
     RPC_PORT: int = 8000
     CHAIN_ID: str = "0x21A8"
     NET_VERSION: str = "205000"
-    ENABLE_WEB: bool = True
+    ENABLE_WEB: bool = False
     WEB_HOST: str = "0.0.0.0"
     WEB_PORT: int = 8080
     RATE_LIMIT_PER_MINUTE: int = 10
