@@ -3,10 +3,6 @@ python-telegram-bot[job-queue]==21.7
 aiohttp==3.9.3
 httpx==0.27.0
 
-# Webhook braucht KEIN FastAPI / uvicorn bei PTB
-# fastapi==0.108.0   ❌ raus
-# uvicorn[standard]==0.25.0 ❌ raus
-
 jinja2==3.1.3
 
 # Blockchain (stabil)
