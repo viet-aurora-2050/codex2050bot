@@ -1,6 +1,6 @@
 # Codex2050
 
-Telegram bot powered by DeepSeek AI with optional RPC endpoints.
+Telegram bot powered by DeepSeek AI
 
 ## Setup
 1. Create a virtual environment and install dependencies:
