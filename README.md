@@ -32,6 +32,11 @@ So stellst du den Bot und das Dashboard in einem sauberen GitHub→Render-Flow w
 1. **Repository vorbereiten**: `main.py`, `requirements.txt`, `render.yaml` und `Procfile` müssen im Root liegen (keine Unterordner). `render.yaml` enthält jetzt **zwei Services**: `codex2050-bot` (Worker) und `codex2050-dashboard` (Web).
 2. **Render anlegen**: Auf Render „New Web Service“ → GitHub-Repo `codex2050bot` wählen → Runtime Python 3.11 → Build Command leer lassen oder `pip install -r requirements.txt`.
    - Worker-Start: `python main.py` (Procfile nutzt `worker: python main.py`).
+   - Dashboard-Start: `uvicorn web.dashboard:app --host 0.0.0.0 --port $PORT` (im Render-Webservice definiert; `$PORT` kommt automatisch von Render, keine manuelle Vorgabe nötig).
+3. **Build-Cache leeren** (falls vorherige Deploys fehlschlugen): Render → *Advanced* → *Clear build cache* → *Manual Deploy → Deploy latest commit*.
+4. **Secrets kontrollieren**: `TELEGRAM_TOKEN` und `DEEPSEEK_API_KEY` nur im Render-Dashboard hinterlegen und bei Bedarf rotieren. Für das Dashboard ist keine eigene `PORT`-Variable mehr nötig, Render injiziert sie automatisch.
+
+Damit erhältst du einen Neustart ohne alte Cache-Artefakte und einen getrennten Webservice, der das Dashboard wieder erreichbar macht und auf dem von Render zugewiesenen Port lauscht.
    - Dashboard-Start: `uvicorn web.dashboard:app --host 0.0.0.0 --port $PORT` (im Render-Webservice definiert).
 3. **Build-Cache leeren** (falls vorherige Deploys fehlschlugen): Render → *Advanced* → *Clear build cache* → *Manual Deploy → Deploy latest commit*.
 4. **Secrets kontrollieren**: `TELEGRAM_TOKEN` und `DEEPSEEK_API_KEY` nur im Render-Dashboard hinterlegen und bei Bedarf rotieren. Für das Dashboard reicht `PORT`, das in `render.yaml` gesetzt ist.
